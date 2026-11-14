@@ -74,6 +74,9 @@ class ViBot(commands.Bot):
         if not self.french_enabled or not text or not text.strip():
             return text
 
+        if text in self._french_cache:
+            return self._french_cache[text]
+
         chunks = self._chunk_text(text.strip())
         translated_chunks: list[str] = []
 
