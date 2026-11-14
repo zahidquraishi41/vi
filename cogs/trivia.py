@@ -164,13 +164,11 @@ class Trivia(commands.Cog):
         ctx: commands.Context,
         difficulty: str | None = None,
     ):
-        """Play fastest-finger trivia. Passing a difficulty sets it as the new default.
+        """Play fastest-finger trivia. 
+        Passing a difficulty sets it as the new default.
 
-        Usage:
-            vivy trivia
-            vivy trivia easy
-            vivy trivia medium
-            vivy trivia hard
+        Difficulties:
+            easy, medium, hard
         """
         if difficulty is not None:
             diff_key = difficulty.lower().strip()
