@@ -41,6 +41,32 @@ class ViBot(commands.Bot):
             "Could not load trivia questions at this time.": "Impossible de charger les questions de quiz pour le moment.",
         }
 
+    async def on_command(self, ctx: commands.Context) -> None:
+        """Logs invoked commands in guilds only (DMs are already logged in on_message)."""
+        if ctx.guild is not None:
+            print(f"[IN  | #{ctx.channel}] {ctx.author}: {ctx.message.content}")
+
+    async def on_message(self, message: discord.Message) -> None:
+        """Logs all DM messages, all outgoing bot messages, and processes commands."""
+        # 1. Log outgoing bot messages (both Guild and DM)
+        if self.user is not None and message.author.id == self.user.id:
+            location = f"#{message.channel}" if message.guild else "DM"
+
+            if message.content:
+                print(f"[OUT | {location}] {message.content}")
+
+            for embed in message.embeds:
+                summary = embed.title or embed.description or "(Embed)"
+                print(f"[OUT | {location}] [Embed] {summary}")
+            return
+
+        # 2. Log every incoming message in DMs (commands and regular chat)
+        if message.guild is None:
+            content = message.content or "[Attachment/Embed]"
+            print(f"[IN  | DM] {message.author}: {content}")
+
+        await self.process_commands(message)
+
     def _chunk_text(self, text: str, max_chars: int = 450) -> list[str]:
         """Splits text into chunks under max_chars without cutting words in half."""
         words = text.split(" ")
