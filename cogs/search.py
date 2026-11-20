@@ -44,11 +44,7 @@ class Search(commands.Cog):
     @commands.command(name="search", aliases=["find", "web"])
     @commands.cooldown(1, 3, commands.BucketType.user)
     async def search(self, ctx: commands.Context, *, query: str | None = None) -> None:
-        """Searches the web and returns an instant answer with top sources.
-
-        Usage:
-            vivy search how many stars are in the sky
-        """
+        """Searches the web and returns an instant answer with top sources."""
         if not self.api_key:
             await self.bot.send_french(
                 ctx, "❌ `TAVILY_API_KEY` is missing from your environment."

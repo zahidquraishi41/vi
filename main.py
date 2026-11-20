@@ -29,7 +29,7 @@ class ViBot(commands.Bot):
             help_command=DocstringHelpCommand(),
         )
         self.session: aiohttp.ClientSession | None = None
-        self.name = self.user.display_name if self.user else "bot"
+        self.name = self.user.display_name if self.user else "vava"
         self.french_enabled: bool = True
         self._french_cache = {
             "I need at least two distinct options to decide!": "Il me faut au moins deux options distinctes pour prendre une décision !",

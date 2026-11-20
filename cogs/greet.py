@@ -187,7 +187,7 @@ class Greetings(commands.Cog):
         error: commands.CommandError,
     ) -> None:
         if isinstance(error, commands.MissingRequiredArgument):
-            await ctx.send("Specify who to greet! Example: `vivy greet @user`")
+            await ctx.send("Specify who to greet!")
         elif isinstance(error, commands.MemberNotFound):
             await ctx.send("I couldn't find that user in this server.")
         else:
