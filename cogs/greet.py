@@ -78,7 +78,7 @@ class Greetings(commands.Cog):
     ) -> str:
         text = entry.hello
         if entry.hello_roman and entry.hello_roman.lower() != entry.hello.lower():
-            text = f"{entry.hello} ({entry.hello_roman})"
+            text = f"{entry.hello}"
 
         return f"{target.mention} **{text}**!" if target else f"**{text}**!"
 
